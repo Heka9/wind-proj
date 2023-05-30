@@ -493,12 +493,12 @@ textarea:focus {
 	padding: 2rem 2rem;
 }
 
-.glazing .aluminum,
+/* .glazing .aluminum,
 .glazing .plastic,
 .glazing .french,
 .glazing .rise {
 	display: none;
-}
+} */
 
 .glazing a.active {
 	text-decoration: none;
@@ -595,11 +595,11 @@ textarea:focus {
 	color: #000000;
 }
 
-.decoration .external,
+/* .decoration .external,
 .decoration .rising,
 .decoration .roof {
 	display: none;
-}
+} */
 
 /*Our works*/
 .works {
@@ -939,7 +939,7 @@ textarea:focus {
 }
 
 .popup_calc_content .big_img img {
-	display: none;
+	/* display: none; */
 	margin-bottom: 3rem;
 	width: 30rem;
 }
@@ -1813,6 +1813,9 @@ textarea:focus {
 
 .open {
 	display: block;
+}
+.open-inline {
+	display: inline-block;
 }
 .close {
 	display: none;
