@@ -15,7 +15,7 @@ const gallery = () => {
    const imagePopup = document.createElement('div')
    const bigImg = document.createElement('img')
 
-   imagePopup.classList.add('popup')
+   imagePopup.classList.add('popup_gallery')
    imagePopup.style.justifyContent = 'center'
    imagePopup.style.alignItems = 'center'
    bigImg.style.maxWidth = '80%'

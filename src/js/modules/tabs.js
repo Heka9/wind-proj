@@ -6,11 +6,11 @@ const tabs = (tabBtnsParent, tabBtn, tabContent, activeClassTab, display = 'bloc
    function hideTabContent() {
       tabsContent.forEach((tab) => {
          if (display === 'block') {
-            tab.classList.remove('open')
+            tab.classList.remove('open-popup')
          } else {
             tab.classList.remove('open-inline')
          }
-         tab.classList.add('close')
+         tab.classList.add('close-popup')
       })
       tabsBtns.forEach((tab) => {
          tab.classList.remove(activeClassTab)
@@ -19,11 +19,11 @@ const tabs = (tabBtnsParent, tabBtn, tabContent, activeClassTab, display = 'bloc
 
    function showTabContent(i = 0) {
       if (display === 'block') {
-         tabsContent[i].classList.add('open')
+         tabsContent[i].classList.add('open-popup')
       } else {
          tabsContent[i].classList.add('open-inline')
       }
-      tabsContent[i].classList.remove('close')
+      tabsContent[i].classList.remove('close-popup')
       tabsBtns[i].classList.add(activeClassTab)
    }
 

@@ -1811,17 +1811,27 @@ textarea:focus {
 	}
 }
 
-.open {
+.open-popup {
 	display: block;
 }
 .open-inline {
 	display: inline-block;
 }
-.close {
+.close-popup {
 	display: none;
 }
 .lock {
 	overflow: hidden;
+}
+.popup_gallery {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* small devices, tablets */

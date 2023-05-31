@@ -1,4 +1,4 @@
-const popups = () => {
+const popups = (state) => {
    const initialDocumentWidth = document.body.clientWidth
 
    function bindPopup(selectorPopup, openBtnSelector, closeBtnSelector, closeClickOverlay = true) {
@@ -17,14 +17,14 @@ const popups = () => {
       }
 
       function openPopup() {
-         popup.classList.add('open')
-         popup.classList.remove('close')
+         popup.classList.add('open-popup')
+         popup.classList.remove('close-popup')
          lockScroll()
       }
 
       function closePopup() {
-         popup.classList.add('close')
-         popup.classList.remove('open')
+         popup.classList.add('close-popup')
+         popup.classList.remove('open-popup')
          unlockScroll()
       }
 
@@ -33,8 +33,8 @@ const popups = () => {
             e.preventDefault()
 
             modals.forEach((modal) => {
-               modal.classList.add('close')
-               modal.classList.remove('open')
+               modal.classList.add('close-popup')
+               modal.classList.remove('open-popup')
             })
 
             openPopup()
@@ -44,8 +44,8 @@ const popups = () => {
       popup.addEventListener('click', (e) => {
          if (e.target.closest(closeBtnSelector) || (e.target === popup && closeClickOverlay)) {
             modals.forEach((modal) => {
-               modal.classList.add('close')
-               modal.classList.remove('open')
+               modal.classList.add('close-popup')
+               modal.classList.remove('open-popup')
             })
 
             closePopup()
@@ -55,7 +55,14 @@ const popups = () => {
 
    function showPopupByTime(selectorPopup, time) {
       setTimeout(() => {
-         document.querySelector(selectorPopup).classList.add('open')
+         const pop = document.querySelector(selectorPopup)
+         pop.style.display = 'block'
+
+         pop.addEventListener('click', (e) => {
+            if (e.target.closest('.popup_close') || e.target === pop) {
+               pop.style.display = 'none'
+            }
+         })
 
          document.body.classList.add('lock')
          document.body.style.paddingRight = `${document.body.clientWidth - initialDocumentWidth}px`

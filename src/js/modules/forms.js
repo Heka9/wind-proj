@@ -1,6 +1,7 @@
-const forms = (url) => {
+import checkNumInputs from './checkNumInputs'
+
+const forms = (state) => {
    const formsArray = document.querySelectorAll('form')
-   const phones = document.querySelectorAll('input[name="user_phone"]')
 
    const messages = {
       pending: 'Идет отправка',
@@ -26,11 +27,7 @@ const forms = (url) => {
       return await res.text()
    }
 
-   phones.forEach((phone) => {
-      phone.addEventListener('input', () => {
-         phone.value = phone.value.replace(/\D+/g, '')
-      })
-   })
+   checkNumInputs('input[name="user_phone"]')
 
    formsArray.forEach((form) => {
       form.addEventListener('submit', (e) => {
@@ -43,10 +40,15 @@ const forms = (url) => {
          // const formData = JSON.stringify(Object.fromEntries(new FormData(form).entries()))
 
          const formData = new FormData(form)
+         if (form.getAttribute('data-form') === 'end') {
+            for (const key in state) {
+               formData.append(key, state[key])
+               delete state[key]
+            }
+         }
 
          postForm('./assets/server.php', formData)
-            .then((res) => {
-               console.log(res)
+            .then((result) => {
                status.textContent = messages.resolve
             })
             .catch((error) => {
@@ -58,6 +60,16 @@ const forms = (url) => {
                setTimeout(() => {
                   status.remove()
                }, 3000)
+               setTimeout(() => {
+                  if (form.getAttribute('data-form') === 'end') {
+                     const popup = form.closest('.popup_calc_end')
+                     popup.classList.add('close-popup')
+                     popup.classList.remove('open-popup')
+
+                     document.body.classList.remove('lock')
+                     document.body.style.paddingRight = ``
+                  }
+               }, 5000)
             })
       })
    })
